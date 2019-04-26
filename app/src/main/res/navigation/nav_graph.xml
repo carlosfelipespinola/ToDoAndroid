@@ -6,14 +6,20 @@
     <fragment android:id="@+id/toDosFragment" android:name="com.example.letsdo.ToDosFragment"
               android:label="To-do lists">
         <action android:id="@+id/action_toDosFragment_to_createToDoFragment" app:destination="@id/createToDoFragment"
-                app:popUpTo="@+id/toDosFragment"/>
+                app:popUpTo="@+id/toDosFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action android:id="@+id/action_toDosFragment_to_toDoEditorFragment" app:destination="@id/toDoEditorFragment"
-                app:popUpTo="@+id/toDosFragment"/>
+                app:popUpTo="@+id/toDosFragment" app:enterAnim="@anim/nav_default_enter_anim"
+                app:exitAnim="@anim/nav_default_exit_anim" app:popEnterAnim="@anim/nav_default_pop_enter_anim"
+                app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/createToDoFragment" android:name="com.example.letsdo.CreateToDoFragment"
               android:label="Create To-Do">
         <action android:id="@+id/action_createToDoFragment_to_toDoEditorFragment"
-                app:destination="@id/toDoEditorFragment" app:popUpTo="@+id/toDosFragment"/>
+                app:destination="@id/toDoEditorFragment" app:popUpTo="@+id/toDosFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
     </fragment>
     <fragment android:id="@+id/toDoEditorFragment" android:name="com.example.letsdo.ToDoEditorFragment"
               android:label="To-Do tittle" tools:layout="@layout/to_do_editor_fragment">
