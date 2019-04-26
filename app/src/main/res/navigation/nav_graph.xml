@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools" android:id="@+id/nav_graph" app:startDestination="@id/toDosFragment">
+
+    <fragment android:id="@+id/toDosFragment" android:name="com.example.letsdo.ToDosFragment"
+              android:label="ToDosFragment">
+        <action android:id="@+id/action_toDosFragment_to_createToDoFragment" app:destination="@id/createToDoFragment"
+                app:popUpTo="@+id/toDosFragment"/>
+    </fragment>
+    <fragment android:id="@+id/createToDoFragment" android:name="com.example.letsdo.CreateToDoFragment"
+              android:label="CreateToDoFragment">
+        <action android:id="@+id/action_createToDoFragment_to_toDoEditorFragment"
+                app:destination="@id/toDoEditorFragment"/>
+    </fragment>
+    <fragment android:id="@+id/toDoEditorFragment" android:name="com.example.letsdo.ToDoEditorFragment"
+              android:label="to_do_editor_fragment" tools:layout="@layout/to_do_editor_fragment">
+        <argument android:name="toDoUid" app:argType="long" android:defaultValue="-1L"/>
+    </fragment>
+</navigation>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">LetsDo</string>
+    <string name="edit">Edit</string>
+    <string name="delete_to_do_list">Delete To-Do list</string>
+    <string name="done">Done</string>
+    <string name="hint_todo_name">To-do list name</string>
+</resources>
