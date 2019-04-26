@@ -15,9 +15,10 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.letsdo.data.ToDo
 import com.example.letsdo.databinding.ToDosFragmentBinding
+import com.example.letsdo.interfaces.OnToDoItemClickListener
 
 
-class ToDosFragment : Fragment() {
+class ToDosFragment : Fragment(), OnToDoItemClickListener {
 
     companion object {
         fun newInstance() = ToDosFragment()
@@ -42,8 +43,23 @@ class ToDosFragment : Fragment() {
         binding.actionButton.setOnClickListener { navigateToCreateToDoFragment() }
         binding.mainRecyclerView.layoutManager = LinearLayoutManager(context)
         binding.mainRecyclerView.setHasFixedSize(true)
-        binding.mainRecyclerView.adapter = ToDosRecyclerViewAdapter(arrayListOf())
+        binding.mainRecyclerView.adapter = ToDosRecyclerViewAdapter(toDos =  arrayListOf(), onToDoClickListener = this)
         observeToDos()
+    }
+
+    private fun navigateToCreateToDoFragment(){
+        val navController = findNavController()
+        navController.navigate(ToDosFragmentDirections.actionToDosFragmentToCreateToDoFragment())
+    }
+
+    private fun navigateToToDoEditorFragment(toDoUid: Long){
+        val navController = findNavController()
+        navController.navigate(ToDosFragmentDirections.actionToDosFragmentToToDoEditorFragment(toDoUid))
+    }
+
+    override fun onToDoItemClick(v: View?, toDo: ToDo) {
+        Log.d("clickteste", "clicou no todo")
+        navigateToToDoEditorFragment(toDo.uid)
     }
 
     private fun observeToDos(){
@@ -53,9 +69,6 @@ class ToDosFragment : Fragment() {
         })
     }
 
-     private fun navigateToCreateToDoFragment(){
-        val navController = findNavController()
-        navController.navigate(ToDosFragmentDirections.actionToDosFragmentToCreateToDoFragment())
-    }
+
 
 }
