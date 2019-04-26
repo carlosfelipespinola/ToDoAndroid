@@ -11,7 +11,7 @@
     <fragment android:id="@+id/createToDoFragment" android:name="com.example.letsdo.CreateToDoFragment"
               android:label="CreateToDoFragment">
         <action android:id="@+id/action_createToDoFragment_to_toDoEditorFragment"
-                app:destination="@id/toDoEditorFragment"/>
+                app:destination="@id/toDoEditorFragment" app:popUpTo="@+id/toDosFragment"/>
     </fragment>
     <fragment android:id="@+id/toDoEditorFragment" android:name="com.example.letsdo.ToDoEditorFragment"
               android:label="to_do_editor_fragment" tools:layout="@layout/to_do_editor_fragment">
