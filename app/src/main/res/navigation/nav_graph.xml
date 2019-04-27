@@ -24,5 +24,6 @@
     <fragment android:id="@+id/toDoEditorFragment" android:name="com.example.letsdo.ToDoEditorFragment"
               android:label="To-Do tittle" tools:layout="@layout/to_do_editor_fragment">
         <argument android:name="toDoUid" app:argType="long" android:defaultValue="-1L"/>
+        <action android:id="@+id/action_toDoEditorFragment_to_toDosFragment" app:destination="@id/toDosFragment"/>
     </fragment>
 </navigation>

@@ -5,10 +5,8 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
@@ -37,25 +35,62 @@ class ToDoEditorFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = DataBindingUtil.inflate(inflater, R.layout.to_do_editor_fragment, container, false)
+        setHasOptionsMenu(true)
         return binding.root
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         binding.lifecycleOwner = this
-
         val args = ToDoEditorFragmentArgs.fromBundle(arguments!!)
-        Toast.makeText(context, "todo list of uid: ${args.toDoUid}", Toast.LENGTH_LONG).show()
         viewModel = ViewModelProviders.of(this).get(ToDoEditorViewModel::class.java)
         viewModel.setToDoUid(toDoUid = args.toDoUid)
         binding.viewmodel = viewModel
         observeToDo()
+        observeOnToDoDeleteError()
+        observeOnToDoDeleted()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.to_do_editor_menu, menu)
+        return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if(item.itemId == R.id.delete_list){
+            viewModelDeleteToDo()
+            return true
+        }
+        return false
+    }
+
+    private fun viewModelDeleteToDo(){
+        viewModel.deleteToDo()
+    }
+
+    private fun observeOnToDoDeleted(){
+        viewModel.onToDoDeleted.observe(this, Observer {
+            val navController = findNavController()
+            navController.navigate(ToDoEditorFragmentDirections.actionToDoEditorFragmentToToDosFragment())
+        })
+    }
+
+    private fun observeOnToDoDeleteError(){
+        viewModel.onToDoDeleteError.observe(this, Observer {
+            Toast.makeText(context, "Error while deleting To-do list", Toast.LENGTH_LONG).show()
+        })
     }
 
     private fun observeToDo(){
         viewModel.toDo.observe(this, Observer {
-            (activity as AppCompatActivity).supportActionBar?.title = it.name
+            (activity as AppCompatActivity).supportActionBar?.title = it?.name
         })
     }
+
+
+
+
+
+
 
 }
