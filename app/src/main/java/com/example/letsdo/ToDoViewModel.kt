@@ -11,10 +11,12 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ToDoEditorViewModel(application: Application) : AndroidViewModel(application) {
+class ToDoViewModel(application: Application) : AndroidViewModel(application) {
 
     private var toDoDAO: ToDoDAO
     private var toDoUid: Long = -1L
+    val lodedToDoUid: Long
+        get() = toDoUid
 
     lateinit var toDo: LiveData<ToDo>
 
@@ -54,5 +56,6 @@ class ToDoEditorViewModel(application: Application) : AndroidViewModel(applicati
         }
 
     }
-    // TODO: Implement the ViewModel
+
+
 }

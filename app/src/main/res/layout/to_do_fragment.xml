@@ -4,7 +4,7 @@
         xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <variable name="viewmodel" type="com.example.letsdo.ToDoEditorViewModel"/>
+        <variable name="viewmodel" type="com.example.letsdo.ToDoViewModel"/>
     </data>
 
     <LinearLayout
