@@ -5,9 +5,10 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 
-@Database(version = 1, entities = [ToDo::class], exportSchema = false)
+@Database(version = 2, entities = [ToDo::class, ToDoTask::class], exportSchema = false)
 abstract class AppDatabase: RoomDatabase() {
     abstract val toDoDAO: ToDoDAO
+    abstract val toDoTaskDoDAO: ToDoTaskDAO
 
     companion object {
         @Volatile
