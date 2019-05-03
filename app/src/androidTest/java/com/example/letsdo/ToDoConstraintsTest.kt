@@ -14,7 +14,7 @@ import org.junit.runner.RunWith
 import java.io.IOException
 
 @RunWith(AndroidJUnit4::class)
-class DatabaseUniqueConstraintsTest {
+class ToDoConstraintsTest {
 
     private lateinit var toDoDAO: ToDoDAO
     private lateinit var db: AppDatabase

@@ -16,7 +16,7 @@ import java.sql.SQLIntegrityConstraintViolationException
 
 
 @RunWith(AndroidJUnit4::class)
-class DatabaseCRUDTest {
+class ToDoCRUDTest {
     private lateinit var toDoDAO: ToDoDAO
     private lateinit var db: AppDatabase
 
