@@ -23,4 +23,7 @@ interface ToDoDAO {
 
     @Query("SELECT COUNT(*) FROM to_dos_table ")
     fun count(): LiveData<Int>
+
+    @Query("SELECT COUNT(*) FROM to_do_task_table WHERE to_do_uid = :todoUid")
+    fun countTasksInToDo(todoUid: Long): LiveData<Int>
 }

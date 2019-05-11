@@ -17,6 +17,6 @@ interface ToDoTaskDAO {
     @Query("select * from to_do_task_table where to_do_uid = :toDoUid")
     fun getAllTasksFromToDo(toDoUid: Long): LiveData<List<ToDoTask>>
 
-    @Query("SELECT * FROM to_do_task_table WHERE uid IS :uid")
-    fun getByUid(uid: Long): LiveData<ToDoTask>
+    @Query("SELECT * FROM to_do_task_table WHERE uid = :uid")
+    fun getByUidSync(uid: Long): ToDoTask
 }
