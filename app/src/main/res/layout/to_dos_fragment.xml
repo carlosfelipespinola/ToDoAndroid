@@ -4,29 +4,30 @@
         <variable name="viewmodel" type="com.example.letsdo.ToDosViewModel"/>
         <variable name="action_button_click" type="android.view.View.OnClickListener"/>
     </data>
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@{viewmodel.toDosQuantityStr}"
-        />
-
-        <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/main_recycler_view"
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+                android:orientation="vertical"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@{viewmodel.toDosQuantityStr}"
+            />
 
+            <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/main_recycler_view"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </LinearLayout>
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/action_button"/>
+    </FrameLayout>
 
-    </LinearLayout>
 
 </layout>

@@ -3,22 +3,20 @@ package com.example.letsdo
 import android.app.Application
 import androidx.arch.core.util.Function
 import androidx.lifecycle.*
-import com.example.letsdo.data.AppDatabase
-import com.example.letsdo.data.ToDo
-import com.example.letsdo.data.ToDoDAO
+import com.example.letsdo.data.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.launch
 import java.lang.Exception
 
-class ToDoViewModel(application: Application) : AndroidViewModel(application) {
-
+class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(application) {
+    private var toDoTaskDAO: ToDoTaskDAO
     private var toDoDAO: ToDoDAO
     private var toDoUid: Long = -1L
     val lodedToDoUid: Long
         get() = toDoUid
 
-    lateinit var toDo: LiveData<ToDo>
+    var toDo: LiveData<ToDo>
 
     private val _onToDoDeleted = MutableLiveData<Unit>()
     val onToDoDeleted: LiveData<Unit>
@@ -28,15 +26,16 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
     val onToDoDeleteError: LiveData<Exception>
         get() = _onToDoDeleteError
 
-
+    var toDoTasksCount: LiveData<Int> = MutableLiveData()
+    var toDoTasks: LiveData<List<ToDoTask>>
     init {
         val db = AppDatabase.getInstance(application)
         toDoDAO = db.toDoDAO
-    }
-
-    fun setToDoUid(toDoUid: Long){
+        toDoTaskDAO = db.toDoTaskDoDAO
         this.toDoUid = toDoUid
         toDo = toDoDAO.getByUid(toDoUid)
+        toDoTasksCount = toDoDAO.countTasksInToDo(todoUid = this.toDoUid)
+        toDoTasks = toDoTaskDAO.getAllTasksFromToDo(this.toDoUid)
     }
 
     fun deleteToDo(){
@@ -56,6 +55,4 @@ class ToDoViewModel(application: Application) : AndroidViewModel(application) {
         }
 
     }
-
-
 }

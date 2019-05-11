@@ -51,7 +51,7 @@ class ToDoTaskCRUDTest {
     }
 
     private fun updateSomeToDoTask(): Boolean{
-        val toDoTask = toDoTaskDAO.getByUid(1L).value
+        val toDoTask = toDoTaskDAO.getByUidSync(1L)
         if(toDoTask == null){
             return false
         }
@@ -69,7 +69,7 @@ class ToDoTaskCRUDTest {
     }
 
     private fun deleteSomeToDoTasks(): Boolean{
-        val toDoTask = toDoTaskDAO.getByUid(1L).value
+        val toDoTask = toDoTaskDAO.getByUidSync(1L)
         if(toDoTask == null){
             return false
         }
