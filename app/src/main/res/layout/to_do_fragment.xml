@@ -32,6 +32,9 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
                 android:id="@+id/action_button"
+                android:layout_marginEnd="@dimen/margin_end"
+                android:layout_marginBottom="@dimen/margin_bottom"
+                android:src="@drawable/ic_add_24dp"
                 app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintEnd_toEndOf="parent"
         />
     </androidx.constraintlayout.widget.ConstraintLayout>
