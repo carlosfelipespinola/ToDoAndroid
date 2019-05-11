@@ -4,7 +4,7 @@
         <variable name="viewmodel" type="com.example.letsdo.ToDosViewModel"/>
         <variable name="action_button_click" type="android.view.View.OnClickListener"/>
     </data>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" style="@style/padding">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -26,7 +26,8 @@
         <com.google.android.material.floatingactionbutton.FloatingActionButton
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/action_button"/>
+                android:id="@+id/action_button"
+                android:layout_gravity="bottom|end"/>
     </FrameLayout>
 
 
