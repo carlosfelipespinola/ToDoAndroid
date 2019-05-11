@@ -1,9 +1,7 @@
 package com.example.letsdo.data
 
 import androidx.annotation.NonNull
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
+import androidx.room.*
 
 @Entity(tableName = "to_dos_table")
 data class ToDo (
@@ -12,4 +10,6 @@ data class ToDo (
 ) {
     @PrimaryKey(autoGenerate = true)
     var uid: Long = 0
+
+    var percentage: Int = 0
 }

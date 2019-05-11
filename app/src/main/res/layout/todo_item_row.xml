@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout
+        xmlns:tools="http://schemas.android.com/tools"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:android="http://schemas.android.com/apk/res/android">
     <data>
         <variable name="todo" type="com.example.letsdo.data.ToDo"/>
@@ -7,11 +9,21 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="16dp">
         <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                tools:text="Filmes para assistir"
+                style="@style/TextAppearance.MaterialComponents.Body1"
                 android:text="@{todo.name}"/>
+        <ProgressBar
+                style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+                android:progress="@{todo.percentage}"
+                android:max="100"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" android:progressTint="@color/colorAccent"/>
     </LinearLayout>
 </layout>
