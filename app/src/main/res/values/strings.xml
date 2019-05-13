@@ -4,4 +4,5 @@
     <string name="delete_to_do_list">Delete To-Do list</string>
     <string name="done">Done</string>
     <string name="hint_todo_name">To-do list name</string>
+    <string name="number_of_lists">%s lists</string>
 </resources>

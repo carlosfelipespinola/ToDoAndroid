@@ -13,7 +13,7 @@
             <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{viewmodel.toDosQuantityStr}"
+                    android:text="@{@string/number_of_lists(viewmodel.toDosQuantity.toString())}"
             />
 
             <androidx.recyclerview.widget.RecyclerView
