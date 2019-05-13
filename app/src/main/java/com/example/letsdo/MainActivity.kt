@@ -3,11 +3,8 @@ package com.example.letsdo
 import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.util.Log
-import android.view.MenuItem
 import android.view.inputmethod.InputMethodManager
 import androidx.appcompat.widget.Toolbar
-import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 

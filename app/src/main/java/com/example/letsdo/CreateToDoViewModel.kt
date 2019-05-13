@@ -1,7 +1,6 @@
 package com.example.letsdo
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.example.letsdo.data.AppDatabase
 import com.example.letsdo.data.ToDo

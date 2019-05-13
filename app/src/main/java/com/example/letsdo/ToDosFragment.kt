@@ -2,17 +2,14 @@ package com.example.letsdo
 
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.AdapterView
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.letsdo.data.ToDo
 import com.example.letsdo.databinding.ToDosFragmentBinding
 import com.example.letsdo.interfaces.OnToDoItemClickListener
@@ -58,7 +55,6 @@ class ToDosFragment : Fragment(), OnToDoItemClickListener {
     }
 
     override fun onToDoItemClick(v: View?, toDo: ToDo) {
-        Log.d("clickteste", "clicou no todo")
         navigateToToDoEditorFragment(toDo.uid)
     }
 

@@ -1,6 +1,5 @@
 package com.example.letsdo
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,7 +37,6 @@ class ToDosRecyclerViewAdapter( toDos: List<ToDo>, private val onToDoClickListen
         }
 
         override fun onClick(v: View?) {
-            Log.d("clickteste", "clicou no todo")
             onToDoClickListener.onToDoItemClick(v, toDos[adapterPosition])
         }
 
