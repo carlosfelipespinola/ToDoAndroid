@@ -28,6 +28,7 @@ class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(
 
     var toDoTasksCount: LiveData<Int> = MutableLiveData()
     var toDoTasks: LiveData<List<ToDoTask>>
+    var completedToDoTasksPercentage: LiveData<Int>
     init {
         val db = AppDatabase.getInstance(application)
         toDoDAO = db.toDoDAO
@@ -36,6 +37,7 @@ class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(
         toDo = toDoDAO.getByUid(toDoUid)
         toDoTasksCount = toDoDAO.countTasksInToDo(todoUid = this.toDoUid)
         toDoTasks = toDoTaskDAO.getAllTasksFromToDo(this.toDoUid)
+        completedToDoTasksPercentage = toDoDAO.countCompletedTasksPercentage(toDoUid)
     }
 
     fun deleteToDo(){

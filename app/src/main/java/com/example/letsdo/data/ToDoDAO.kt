@@ -26,4 +26,7 @@ interface ToDoDAO {
 
     @Query("SELECT COUNT(*) FROM to_do_task_table WHERE to_do_uid = :todoUid")
     fun countTasksInToDo(todoUid: Long): LiveData<Int>
+
+    @Query("SELECT round((count(case is_finished when 1 then 1.0 else null end)/(count(*) * 1.00)) * 100) as percentage FROM to_do_task_table WHERE to_do_uid = :todoUid")
+    fun countCompletedTasksPercentage(todoUid: Long): LiveData<Int>
 }
