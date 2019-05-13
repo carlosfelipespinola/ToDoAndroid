@@ -10,7 +10,9 @@ import com.example.letsdo.data.ToDoTask
 import com.example.letsdo.databinding.ToDoTaskItemBinding
 
 interface ToDoTaskClickListener {
-    fun onClick(toDoTask: ToDoTask)
+    fun onRootClick(toDoTask: ToDoTask)
+
+    fun onCheckboxClick(toDoTask: ToDoTask, newCheckboxValue: Boolean)
 }
 
 class ToDoTaskAdapter(private val toDoTaskClickListener: ToDoTaskClickListener): RecyclerView.Adapter<ToDoTaskAdapter.ToDoTaskViewHolder>() {
@@ -37,7 +39,10 @@ class ToDoTaskAdapter(private val toDoTaskClickListener: ToDoTaskClickListener):
 
         fun bind(toDoTask: ToDoTask, toDoTaskClickListener: ToDoTaskClickListener){
             binding.todoTask = toDoTask
-            binding.root.setOnClickListener { toDoTaskClickListener.onClick(toDoTask) }
+            binding.root.setOnClickListener { toDoTaskClickListener.onRootClick(toDoTask) }
+            binding.taskStatus.setOnCheckedChangeListener { buttonView, isChecked ->
+                toDoTaskClickListener.onCheckboxClick(toDoTask, isChecked)
+            }
         }
 
 

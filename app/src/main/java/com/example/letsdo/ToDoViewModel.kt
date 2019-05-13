@@ -55,4 +55,10 @@ class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(
         }
 
     }
+
+    fun updateToDoTask(toDoTask: ToDoTask){
+        viewModelScope.launch(Dispatchers.IO){
+            toDoTaskDAO.update(toDoTask)
+        }
+    }
 }

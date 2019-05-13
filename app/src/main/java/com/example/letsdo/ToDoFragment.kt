@@ -5,6 +5,7 @@ import android.app.Application
 import android.content.Context
 import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.Toast
@@ -71,7 +72,7 @@ class ToDoFragment : Fragment() {
         }else{
             findNavController().navigate(
                 ToDoFragmentDirections
-                    .actionToDoEditorFragmentToToDoTaskEditorFragment2(viewModel.lodedToDoUid, toDoTask!!.uid)
+                    .actionToDoEditorFragmentToToDoTaskEditorFragment2(viewModel.lodedToDoUid, toDoTask.uid)
             )
         }
     }
@@ -83,8 +84,13 @@ class ToDoFragment : Fragment() {
 
     private fun setUpRecyclerView(){
         adapter = ToDoTaskAdapter(object : ToDoTaskClickListener {
-            override fun onClick(toDoTask: ToDoTask) {
+            override fun onRootClick(toDoTask: ToDoTask) {
                 navigateToDoTaskEditor(toDoTask)
+            }
+
+            override fun onCheckboxClick(toDoTask: ToDoTask, newCheckboxValue: Boolean) {
+                toDoTask.isFinished = newCheckboxValue
+                viewModelUpdateToDoTask(toDoTask)
             }
         })
         binding.toDoTaskRecyclerView.setHasFixedSize(true)
@@ -92,6 +98,10 @@ class ToDoFragment : Fragment() {
         layoutManager.orientation = RecyclerView.VERTICAL
         binding.toDoTaskRecyclerView.layoutManager = layoutManager
         binding.toDoTaskRecyclerView.adapter = adapter
+    }
+
+    private fun viewModelUpdateToDoTask(toDoTask: ToDoTask){
+        viewModel.updateToDoTask(toDoTask)
     }
 
     private fun observeToDoTasksAndUpdateRecyclerView(){
