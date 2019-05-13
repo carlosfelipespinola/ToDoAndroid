@@ -4,8 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.letsdo.data.ToDoTask
+import com.example.letsdo.databinding.ToDoTaskItemBinding
 
 interface ToDoTaskClickListener {
     fun onClick(toDoTask: ToDoTask)
@@ -31,19 +33,19 @@ class ToDoTaskAdapter(private val toDoTaskClickListener: ToDoTaskClickListener):
         return itens.size
     }
 
-    class ToDoTaskViewHolder private constructor(private val view: View): RecyclerView.ViewHolder(view){
+    class ToDoTaskViewHolder private constructor(private val binding: ToDoTaskItemBinding): RecyclerView.ViewHolder(binding.root){
 
-        private val textView: TextView = view.findViewById(R.id.tv_task)
         fun bind(toDoTask: ToDoTask, toDoTaskClickListener: ToDoTaskClickListener){
-            textView.text = toDoTask.name
-            view.setOnClickListener { toDoTaskClickListener.onClick(toDoTask) }
+            binding.todoTask = toDoTask
+            binding.root.setOnClickListener { toDoTaskClickListener.onClick(toDoTask) }
         }
 
 
         companion object {
             fun from(parent: ViewGroup): ToDoTaskViewHolder {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.to_do_task_item, parent, false)
-                return ToDoTaskViewHolder(view)
+                val inflater = LayoutInflater.from(parent.context)
+                val binding = ToDoTaskItemBinding.inflate(inflater, parent, false)
+                return ToDoTaskViewHolder(binding)
             }
         }
     }
