@@ -104,7 +104,7 @@ class ToDoFragment : Fragment() {
 
     private fun observeToDoTasksAndUpdateRecyclerView(){
         viewModel.toDoTasks.observe(viewLifecycleOwner, Observer {
-            it?.let { adapter.itens = it }
+            it?.let { adapter.submitList(it) }
         })
     }
 
