@@ -24,7 +24,9 @@
     <fragment android:id="@+id/toDoEditorFragment" android:name="com.example.letsdo.ToDoFragment"
               android:label="To-Do tittle" tools:layout="@layout/to_do_fragment">
         <argument android:name="toDoUid" app:argType="long" android:defaultValue="-1L"/>
-        <action android:id="@+id/action_toDoEditorFragment_to_toDosFragment" app:destination="@id/toDosFragment"/>
+        <action android:id="@+id/action_toDoEditorFragment_to_toDosFragment" app:destination="@id/toDosFragment"
+                app:enterAnim="@anim/nav_default_enter_anim" app:exitAnim="@anim/nav_default_exit_anim"
+                app:popEnterAnim="@anim/nav_default_pop_enter_anim" app:popExitAnim="@anim/nav_default_pop_exit_anim"/>
         <action android:id="@+id/action_toDoEditorFragment_to_editToDoFragment" app:destination="@id/editToDoFragment"
                 app:popUpTo="@+id/toDoEditorFragment"/>
         <action android:id="@+id/action_toDoEditorFragment_to_toDoTaskEditorFragment2"

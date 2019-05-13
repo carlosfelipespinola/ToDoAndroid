@@ -87,9 +87,8 @@ class ToDoFragment : Fragment() {
                 navigateToDoTaskEditor(toDoTask)
             }
 
-            override fun onCheckboxClick(toDoTask: ToDoTask, newCheckboxValue: Boolean) {
-                toDoTask.isFinished = newCheckboxValue
-                viewModelUpdateToDoTask(toDoTask)
+            override fun onCheckboxChangeToDoTaskStatus(changedToDoTask: ToDoTask) {
+                viewModelUpdateToDoTask(changedToDoTask)
             }
         })
         binding.toDoTaskRecyclerView.setHasFixedSize(true)

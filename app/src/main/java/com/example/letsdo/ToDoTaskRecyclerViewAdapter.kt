@@ -1,10 +1,7 @@
 package com.example.letsdo
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.example.letsdo.data.ToDoTask
 import com.example.letsdo.databinding.ToDoTaskItemBinding
@@ -12,7 +9,7 @@ import com.example.letsdo.databinding.ToDoTaskItemBinding
 interface ToDoTaskClickListener {
     fun onRootClick(toDoTask: ToDoTask)
 
-    fun onCheckboxClick(toDoTask: ToDoTask, newCheckboxValue: Boolean)
+    fun onCheckboxChangeToDoTaskStatus(changedToDoTask: ToDoTask)
 }
 
 class ToDoTaskAdapter(private val toDoTaskClickListener: ToDoTaskClickListener): RecyclerView.Adapter<ToDoTaskAdapter.ToDoTaskViewHolder>() {
@@ -41,7 +38,11 @@ class ToDoTaskAdapter(private val toDoTaskClickListener: ToDoTaskClickListener):
             binding.todoTask = toDoTask
             binding.root.setOnClickListener { toDoTaskClickListener.onRootClick(toDoTask) }
             binding.taskStatus.setOnCheckedChangeListener { buttonView, isChecked ->
-                toDoTaskClickListener.onCheckboxClick(toDoTask, isChecked)
+                if(toDoTask.isFinished != isChecked){
+                    toDoTask.isFinished = isChecked
+                    toDoTaskClickListener.onCheckboxChangeToDoTaskStatus(toDoTask)
+                }
+
             }
         }
 
