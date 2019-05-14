@@ -171,6 +171,9 @@ class ToDoFragment : Fragment() {
 
     private fun navigateToToDosFragment(){
         val navController = findNavController()
+        if(navController.currentDestination != null){
+            return
+        }
         navController.navigate(ToDoFragmentDirections.actionToDoEditorFragmentToToDosFragment())
     }
 
