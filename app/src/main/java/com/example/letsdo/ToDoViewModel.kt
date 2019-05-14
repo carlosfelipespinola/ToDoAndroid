@@ -1,6 +1,7 @@
 package com.example.letsdo
 
 import android.app.Application
+import android.util.Log
 import androidx.arch.core.util.Function
 import androidx.lifecycle.*
 import com.example.letsdo.data.*
@@ -10,6 +11,7 @@ import kotlinx.coroutines.launch
 import java.lang.Exception
 
 class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(application) {
+    private var searchFilter: MutableLiveData<String> = MutableLiveData()
     private var toDoTaskDAO: ToDoTaskDAO
     private var toDoDAO: ToDoDAO
     private var toDoUid: Long = -1L
@@ -37,7 +39,25 @@ class ToDoViewModel(application: Application, toDoUid: Long) : AndroidViewModel(
         toDo = toDoDAO.getByUid(toDoUid)
         toDoTasksCount = toDoDAO.countTasksInToDo(todoUid = this.toDoUid)
         toDoTasks = toDoTaskDAO.getAllTasksFromToDo(this.toDoUid)
+        toDoTasks = Transformations.switchMap(searchFilter){
+            if(it.isNotEmpty()){
+                toDoTaskDAO.getTasksFromToDoWhere(this.toDoUid, "%$it%")
+            }else{
+                toDoTaskDAO.getAllTasksFromToDo(this.toDoUid)
+            }
+
+        }
+        searchFilter.value = ""
+
         completedToDoTasksPercentage = toDoDAO.countCompletedTasksPercentage(toDoUid)
+    }
+
+    fun filterToDoTasksByName(name: String){
+        searchFilter.value = name
+    }
+
+    fun removeToDoTasksFilters(){
+        searchFilter.value = ""
     }
 
     fun deleteToDo(){

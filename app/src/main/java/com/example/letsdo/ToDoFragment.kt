@@ -110,10 +110,33 @@ class ToDoFragment : Fragment() {
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate( R.menu.to_do_options_menu, menu)
-
         val searchView = menu.findItem(R.id.to_do_task_search).actionView as SearchView
-
+        setUpSearchViewListeners(searchView)
         return super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    private fun setUpSearchViewListeners(searchView: SearchView){
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                doFilter(query)
+                return true
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+                doFilter(newText)
+                return true
+            }
+
+            private fun doFilter(query: String?){
+                val name = if (query.isNullOrEmpty()) "" else query
+                viewModel.filterToDoTasksByName(name)
+            }
+        })
+
+        searchView.setOnCloseListener {
+            viewModel.removeToDoTasksFilters()
+            true
+        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
