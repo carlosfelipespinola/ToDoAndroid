@@ -4,11 +4,12 @@
         <variable name="viewmodel" type="com.example.letsdo.ToDosViewModel"/>
         <variable name="action_button_click" type="android.view.View.OnClickListener"/>
     </data>
-    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent" style="@style/padding">
+    <FrameLayout android:layout_width="match_parent" android:layout_height="match_parent">
         <LinearLayout
                 android:orientation="vertical"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                style="@style/padding">
 
             <TextView
                     android:layout_width="match_parent"
